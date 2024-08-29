@@ -1,0 +1,68 @@
+title: Suspicious Network and File Activity
+id: e4b03f74-9d56-4b7c-b1a7-b9a621f7ae3a
+status: experimental
+description: Detects suspicious activities such as file creation, network communications, and processes indicative of malicious behavior.
+author: Fernando Vargas
+date: 2024-08-29
+references:
+    - https://www.virustotal.com
+tags:
+    - attack.command_and_control
+    - attack.execution
+    - attack.persistence
+    - attack.exfiltration
+logsource:
+    category: process_creation
+    product: macos
+detection:
+    selection:
+        EventID:
+            - 1
+        ProcessName:
+            - '*adprivacyd*'
+        CommandLine:
+            - '*9D4CA51F3C51354F15F7B62BE6EF685D5B68E8F94EFCC7569D0BF75AF9C0*'
+    condition: selection
+    fields:
+        - ProcessName
+        - CommandLine
+    level: high
+    description: Detects the creation of processes and the usage of specific command lines related to the file sample.
+    falsepositives:
+        - Legitimate software installations or updates
+    tags:
+        - suspicious
+        - malware
+    detection:
+        condition:
+            - 'EventID: 1'
+            - 'ProcessName: "*adprivacyd*"'
+            - 'CommandLine: "*9D4CA51F3C51354F15F7B62BE6EF685D5B68E8F94EFCC7569D0BF75AF9C0*"'
+        condition: and
+    fields:
+        - ProcessName
+        - CommandLine
+    level: high
+    description: Detects processes and command lines associated with suspicious activity based on the provided sample.
+    falsepositives:
+        - False positives could be legitimate system processes or applications.
+    tags:
+        - process
+        - network
+        - suspicious
+        - malware
+    detection:
+        condition:
+            - 'ProcessName: "*adprivacyd*"'
+            - 'CommandLine: "*9D4CA51F3C51354F15F7B62BE6EF685D5B68E8F94EFCC7569D0BF75AF9C0*"'
+        condition: and
+    fields:
+        - ProcessName
+        - CommandLine
+    level: high
+    description: Detects processes and command lines associated with suspicious activity based on the provided sample.
+    falsepositives:
+        - Legitimate system processes
+    tags:
+        - suspicious
+        - malware
