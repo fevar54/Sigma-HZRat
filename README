@@ -1,0 +1,18 @@
+ProcessName: Se busca el nombre de proceso relacionado con el comportamiento malicioso.
+CommandLine: Se busca un patrón específico en la línea de comandos que coincide con el archivo de muestra.
+EventID: Indica que se está observando un evento de creación de procesos.
+
+Utilizar la regla Sigma de la siguiente manera te permitirá identificar patrones de comportamiento malicioso en tus sistemas y responder de manera efectiva a posibles amenazas.
+
+
+Implementación en una Herramienta SIEM: 
+La regla Sigma puede ser implementada en herramientas de Gestión de Información y Eventos de Seguridad (SIEM) como Elastic Stack, Splunk o Graylog. Primero, convierte la regla Sigma en un formato compatible con tu SIEM. Muchas plataformas SIEM soportan Sigma de forma nativa o mediante plugins específicos. La conversión suele implicar la transformación de la sintaxis Sigma a la consulta correspondiente de la herramienta (como Lucene, KQL o SPL).
+
+
+Monitoreo y Ajuste: 
+Una vez que hayas implementado la regla en tu SIEM, comienza a monitorear los eventos generados. La regla está diseñada para detectar actividades sospechosas asociadas con procesos y archivos maliciosos, como la creación de procesos con nombres específicos o comandos relacionados con el archivo de muestra. Ajusta los parámetros de la regla según los resultados y el contexto de tu entorno para minimizar falsos positivos y mejorar la precisión de la detección.
+
+
+
+
+
